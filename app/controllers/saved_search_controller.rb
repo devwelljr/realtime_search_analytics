@@ -1,0 +1,3 @@
+class SavedSearchController < ApplicationController
+  
+end
