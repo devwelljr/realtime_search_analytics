@@ -15,3 +15,12 @@ development:
   username: postgres
   password: search_analytics
   port: 5432
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: search_analytics_test
+  host: localhost
+  username: postgres
+  password: search_analytics
+  port: 5432

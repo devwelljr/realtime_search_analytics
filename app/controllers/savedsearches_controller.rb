@@ -1,10 +1,8 @@
 class SavedsearchesController < ApplicationController
   def index
-    saved_searches_by_ip = SavedSearch.where(ip_address: request.remote_ip)
-    @saved_searches = SavedSearch.to_consumable_json(saved_searches_by_ip)
-      &.sort_by {|saved_search| saved_search[:search_count]}
-      &.uniq { |saved_search| saved_search[:search_id] }
-      &.reverse
+    @saved_searches_by_ip = SavedSearch.where(ip_address: request.remote_ip)
+
+    @saved_searches = SavedSearch.to_consumable_json
 
     respond_to do |format|
       format.html
