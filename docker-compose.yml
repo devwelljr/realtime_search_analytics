@@ -1,0 +1,17 @@
+version: '3.5'
+
+services:
+  database_development:
+    image: postgres:latest
+    container_name: db-search_analytics
+    restart: always
+    tty: true 
+    ports:
+      - '5432:5432'
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=search_analytics
+      - POSTGRES_DB=search_analytics_development
+volumes:
+  dbdata:

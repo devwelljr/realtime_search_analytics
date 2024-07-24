@@ -1,0 +1,20 @@
+<div class="container mt-5">
+  <h1>RealtimeSearchAnalytics</h1>
+
+    <%= form_with url: savedsearches_path, method: :post, id: "search-form" do %>
+      <div class="form-group">
+        <%= label_tag :query, "Search" %>
+        <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Enter your search" %>
+      </div>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    <% end %>
+
+  <div id="search-results" class="mt-4">
+    <%= render partial: "search_results", locals: { saved_searches: @saved_searches } %>
+  </div>
+</div>
+<script>
+$(document).ready(function() {
+  toastr.success('Have fun storming the castle!', 'Miracle Max Says')
+})
+</script>

@@ -6,17 +6,23 @@ gem "rails", "~> 7.0.6"
 
 gem "sprockets-rails"
 
-gem 'pg', '~> 1.1'
+gem "pg"
 
 gem "puma", "~> 5.0"
 
 gem "importmap-rails"
 
-gem "turbo-rails"
-
 gem "stimulus-rails"
 
 gem "jbuilder"
+
+gem 'jquery-rails'
+
+gem 'bootstrap', '~> 4.5.2'
+
+gem 'sass-rails', '>= 5.0'
+
+gem 'toastr-rails', '~> 1.0', '>= 1.0.3'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
@@ -26,7 +32,7 @@ gem "bootsnap", require: false
 
 group :development, :test do
   gem "byebug", platforms: %i[ mri mingw x64_mingw ]
-  gem 'rspec-rails'
+  gem "rspec-rails"
 end
 
 group :development do

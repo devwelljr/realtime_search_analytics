@@ -2,15 +2,25 @@
 <html>
   <head>
     <title>RealtimeSearchAnalytics</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <%= yield %>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        <% if flash[:notice] %>
+          toastr.success("<%= j flash[:notice] %>");
+        <% elsif flash[:alert] %>
+          toastr.error("<%= j flash[:alert] %>");
+        <% end %>
+      });
+    </script>
   </body>
 </html>

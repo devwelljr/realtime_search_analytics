@@ -1,0 +1,16 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Search</th>
+      <th>Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% saved_searches&.each do |saved_search| %>
+      <tr>
+        <td><%= saved_search[:search_text] %></td>
+        <td><%= saved_search[:search_count] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
