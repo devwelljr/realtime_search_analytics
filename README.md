@@ -21,3 +21,5 @@ Realtime search box, where users search articles, and then to have analytics tha
 -Run `docker-compose up --build` to build and start the containers.
 
 -Access the Rails application at http://localhost:3000
+
+-Run `bundle exec rspec spec/controllers/savedsearches_controller_spec.rb` to run the Rails application tests.
