@@ -1,20 +1,35 @@
 <div class="container mt-5">
   <h1>RealtimeSearchAnalytics</h1>
 
-    <%= form_with url: savedsearches_path, method: :post, id: "search-form" do %>
-      <div class="form-group">
-        <%= label_tag :query, "Search" %>
-        <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Enter your search" %>
-      </div>
-      <%= submit_tag "Search", class: "btn btn-primary" %>
-    <% end %>
+  <%= form_with url: savedsearches_path, method: :post, id: "search-form" do %>
+    <div class="form-group">
+      <%= label_tag :query, "Search" %>
+      <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Enter your search", id: "query-input" %>
+      <small id="queryHelp" class="form-text text-muted">Minimum 5 characters required.</small>
+    </div>
+    <%= submit_tag "Search", class: "btn btn-primary disabled", disabled: true, id: "search-submit" %>
+  <% end %>
 
   <div id="search-results" class="mt-4">
     <%= render partial: "search_results", locals: { saved_searches: @saved_searches } %>
   </div>
 </div>
+
 <script>
-$(document).ready(function() {
-  toastr.success('Have fun storming the castle!', 'Miracle Max Says')
-})
+  $(document).ready(function() {
+    $('#query-input').on('input', function() {
+      if ($('#query-input').val().length >= 5) {
+        $('#search-submit').removeClass('disabled').prop('disabled', false);
+      } else {
+        $('#search-submit').addClass('disabled').prop('disabled', true);
+      }
+    });
+
+    $('#search-form').on('submit', function(event) {
+      if ($('#query-input').val().length < 5) {
+        event.preventDefault();
+        toastr.error('Please enter at least 5 characters.');
+      }
+    });
+  });
 </script>

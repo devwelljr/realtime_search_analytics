@@ -2,7 +2,6 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  host: database # Use o nome do serviço do Docker Compose para o banco de dados
   username: postgres
   password: <%= ENV['POSTGRES_PASSWORD'] %>
   database: <%= ENV['POSTGRES_DB'] %>
@@ -11,7 +10,7 @@ development:
   adapter: postgresql
   encoding: unicode
   database: search_analytics_development
-  host: localhost
+  host: database_development
   username: postgres
   password: search_analytics
   port: 5432
@@ -20,7 +19,7 @@ test:
   adapter: postgresql
   encoding: unicode
   database: search_analytics_test
-  host: localhost
+  host: database_test
   username: postgres
-  password: search_analytics
+  password: search_analytics_test
   port: 5432

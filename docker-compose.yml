@@ -13,5 +13,36 @@ services:
     environment:
       - POSTGRES_PASSWORD=search_analytics
       - POSTGRES_DB=search_analytics_development
+
+  database_test:
+    image: postgres:latest
+    container_name: db-search_analytics_test
+    restart: always
+    tty: true 
+    ports:
+      - '5433:5432'
+    volumes:
+      - dbdata_test:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=search_analytics_test
+      - POSTGRES_DB=search_analytics_test
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: api_rails
+    depends_on:
+      - database_development
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    environment:
+      POSTGRES_PASSWORD: search_analytics
+      POSTGRES_DB: search_analytics_development
+    command: bash -c "bundle install && rails db:setup && rails s -b '0.0.0.0'"
+
 volumes:
   dbdata:
+  dbdata_test:
